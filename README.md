@@ -1,4 +1,4 @@
 slacky
 ======
 
-Simple slack chrome app since I hated having it open in a chrome tab
+Simple Slack chrome app I created because I hated having it open in another tab :)

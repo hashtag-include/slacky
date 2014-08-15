@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "name": "Slacky",
+  "author": "SociallyTied",
+  "version": "1.0",
+  "minimum_chrome_version": "23",
+  "description": "Simple Slack chrome app I created because I hated having it open in another tab :)",
+  "icons": {
+    "16": "icon_16.png",
+    "128": "icon_128.png"
+  },
+  "app": {
+    "background": {
+      "scripts": [
+        "slacky.js"
+      ]
+    }
+  },
+  "permissions": [
+    "webview",
+    "notifications"
+  ]
+}
