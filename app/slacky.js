@@ -38,6 +38,12 @@ function createWindow(destUrl) {
 			createdWindow.contentWindow.onload = function() {
 				// Retrieve the webview element
 				var webview = createdWindow.contentWindow.document.querySelector('webview');
+				// When the window is resized, resize the webview to conform to the new size
+				createdWindow.onBoundsChanged.addListener(function() {
+					var bounds = createdWindow.getBounds();
+					webview.style.height = bounds.height;
+					webview.style.width = bounds.width;
+				});
 				// Render the page requested inside the webviuew
 				webview.src = destUrl;
 				// Set links opened off the base page to open in a new window
