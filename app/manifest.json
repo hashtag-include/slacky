@@ -4,7 +4,7 @@
   "author": "SociallyTied",
   "version": "1.0",
   "minimum_chrome_version": "23",
-  "description": "Simple Slack chrome app I created because I hated having it open in another tab :)",
+  "description": "Simple Slack app for Chrome I created because I hate having it open in another tab :)",
   "icons": {
     "16": "icon_16.png",
     "128": "icon_128.png"
