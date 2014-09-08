@@ -29,10 +29,6 @@ function createWindow(destUrl) {
 			innerBounds: {
 				minWidth: width,
 				minHeight: height
-			},
-			// Set the frame color so it doesn't just look like a browser frame
-			frame: {
-				color: frameColor
 			}
 		}, function(createdWindow) {
 			createdWindow.contentWindow.onload = function() {
