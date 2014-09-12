@@ -1,6 +1,5 @@
 // Constants
 var baseUrl = "https://my.slack.com";
-var frameColor = "#3e313c";
 var view = "view.html";
 var width = 1100;
 var height = 700;
