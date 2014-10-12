@@ -50,13 +50,10 @@ function createWindow(destUrl) {
 }
 
 function windowEventHandlers(webview, _blank) {
-	webview.addEventListener('newwindow', function(dest) {
-		// Event handler for when external links are clicked because for some
-		// reason window.open(dest.targetUrl) just crashes the chrome tab
-		dest.preventDefault();
-		if(_blank)
-			createWindow(dest.targetUrl);
-		else
-			webview.src = dest.targetUrl;
+	webview.addEventListener('newwindow', function(event) {
+		// Event handler for when external links are clicked because of
+		// the Chrome packaged app security restriction on opening links in the regular browser
+		event.preventDefault();
+		window.open(event.targetUrl);
 	});
 }
