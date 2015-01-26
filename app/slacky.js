@@ -36,6 +36,16 @@ function createWindow(destUrl) {
 				});
 				// Render the page requested inside the webview
 				webview.src = destUrl;
+				// Add event listener for when webview finishes loading
+				webview.addEventListener("contentload", function() {
+					// Focus on the webview, so focus can go to the proper elements within it
+					webview.focus();
+					// Add event listener for when window becomes focused
+					createdWindow.contentWindow.onfocus = function() {
+						// Focus on the webview, so focus can go to the proper elements within it
+						webview.focus();
+					};
+				});
 				webview.addEventListener('newwindow', function(event) {
 					// Event handler for when external links are clicked because of
 					// the Chrome packaged app security restriction on opening links in the regular browser
