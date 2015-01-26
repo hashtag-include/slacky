@@ -11,11 +11,6 @@ chrome.app.runtime.onLaunched.addListener(function() {
 
 function createWindow(destUrl) {
 	chrome.app.window.create(
-		// We're allowed to just render the same view for all pages because we can
-		// just change the webview src to reflect the requested page
-		//
-		// Other benefits include having the same document store of cookies and sessions
-		// so everything persists accross new windows -- sweet!
 		view, {
 			// Set the height and width and then rander it in the middle of the screen
 			bounds: {
@@ -39,21 +34,15 @@ function createWindow(destUrl) {
 					webview.style.height = bounds.height;
 					webview.style.width = bounds.width;
 				});
-				// Render the page requested inside the webviuew
+				// Render the page requested inside the webview
 				webview.src = destUrl;
-				// Set links opened off the base page to open in a new window
-				// but ones opened off child windows to open in the same window
-				windowEventHandlers(webview, (destUrl === baseUrl));
+				webview.addEventListener('newwindow', function(event) {
+					// Event handler for when external links are clicked because of
+					// the Chrome packaged app security restriction on opening links in the regular browser
+					event.preventDefault();
+					window.open(event.targetUrl);
+				});
 			};
 		}
 	);
-}
-
-function windowEventHandlers(webview, _blank) {
-	webview.addEventListener('newwindow', function(event) {
-		// Event handler for when external links are clicked because of
-		// the Chrome packaged app security restriction on opening links in the regular browser
-		event.preventDefault();
-		window.open(event.targetUrl);
-	});
 }
