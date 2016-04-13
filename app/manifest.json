@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Slacky",
   "author": "SociallyTied",
-  "version": "1.5",
+  "version": "1.6",
   "minimum_chrome_version": "23",
   "description": "Simple Slack app for Chrome I created because I hate having it open in another tab :)",
   "icons": {
