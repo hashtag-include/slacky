@@ -48,37 +48,36 @@ function createWindow(destUrl) {
                     };
                 });
                 webview.addEventListener('newwindow', function(event) {
-                        // Event handler for when external links are clicked because of
-                        // the Chrome packaged app security restriction on opening links in the regular browser
-                        event.preventDefault();
-												var url = event.targetUrl;
-                        chrome.app.window.create(
-                            view, {
-                                hidden: true,
-																innerBounds: {
-																	width:1024,
-																	height: 768
-																}
-                            }, // only show window when webview is configured
-                            function(appWin) {
-                                appWin.contentWindow.addEventListener('DOMContentLoaded',
-                                    function(e) {
-                                        // when window is loaded, set webview source
-                                        var webview = appWin.contentWindow.document.querySelector('webview');
-																				appWin.onBoundsChanged.addListener(function() {
-												                    var bounds = appWin.getBounds();
-												                    webview.style.height = bounds.height;
-												                    webview.style.width = bounds.width;
-												                });
-                                        webview.src = url;
-                                        // now we can show it:
-                                        appWin.show();
-                                    }
-                                );
-                            });
-                    }
-                );
-        };
-    }
-);
+                    // Event handler for when external links are clicked because of
+                    // the Chrome packaged app security restriction on opening links in the regular browser
+                    event.preventDefault();
+                    var url = event.targetUrl;
+                    chrome.app.window.create(
+                        view, {
+                            hidden: true,
+                            innerBounds: {
+                                width: 1024,
+                                height: 768
+                            }
+                        }, // only show window when webview is configured
+                        function(appWin) {
+                            appWin.contentWindow.addEventListener('DOMContentLoaded',
+                                function(e) {
+                                    // when window is loaded, set webview source
+                                    var webview = appWin.contentWindow.document.querySelector('webview');
+                                    appWin.onBoundsChanged.addListener(function() {
+                                        var bounds = appWin.getBounds();
+                                        webview.style.height = bounds.height;
+                                        webview.style.width = bounds.width;
+                                    });
+                                    webview.src = url;
+                                    // now we can show it:
+                                    appWin.show();
+                                }
+                            );
+                        });
+                });
+            };
+        }
+    );
 }
