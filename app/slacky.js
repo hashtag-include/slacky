@@ -3,6 +3,8 @@ var baseUrl = "https://my.slack.com";
 var view = "view.html";
 var width = 1100;
 var height = 700;
+var minWidth = 765;
+var minHeight = 300;
 
 // Setup the initial Slack window
 chrome.app.runtime.onLaunched.addListener(function() {
@@ -12,17 +14,14 @@ chrome.app.runtime.onLaunched.addListener(function() {
 function createWindow(destUrl) {
     chrome.app.window.create(
         view, {
-            // Set the height and width and then rander it in the middle of the screen
-            bounds: {
+            // Set the height and width and then render it in the middle of the screen
+            innerBounds: {
                 width: width,
                 height: height,
+                minWidth: minWidth,
+                minHeight: minHeight,
                 left: Math.round((screen.availWidth - width) / 2),
                 top: Math.round((screen.availHeight - height) / 2)
-            },
-            // Minimum sizes
-            innerBounds: {
-                minWidth: width,
-                minHeight: height
             }
         }, function(createdWindow) {
             createdWindow.contentWindow.onload = function() {
